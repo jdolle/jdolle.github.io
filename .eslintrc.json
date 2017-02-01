@@ -1,0 +1,39 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "parser": "babel-eslint",
+  "cache": true,
+  "cacheLocation": ".eslintcache",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "globalReturn": true,
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+    "babel",
+    "flowtype",
+    "react",
+    "mocha"
+  ],
+  "extends": [
+    "babel",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended"
+  ],
+  // custom rules preferences
+  "rules": {
+    "semi": ["error", "never"],
+    "quotes": ["error", "single"],
+
+    "react/jsx-indent": ["error", 2],
+    "react/no-set-state": "off"
+  }
+}
