@@ -1,4 +1,5 @@
 import React from 'react'
+import GithubForkComponent from 'components/github-fork/component'
 import FaceCanvasComponent from 'components/face-canvas/component'
 import ResizeInputComponent from 'components/resize-input/component'
 
@@ -31,6 +32,7 @@ class Component extends React.Component {
   render() {
     return (
       <div className='route-root-component'>
+        <GithubForkComponent />
         <h1>
           {'Hello, '}
           <ResizeInputComponent onChange={this.handleNameChange}

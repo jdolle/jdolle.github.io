@@ -9,7 +9,6 @@
     "build:prod": "NODE_ENV=production npm run build",
     "server": "webpack-dev-server --content-base dist/",
     "test": "NODE_ENV=test nyc --reporter=lcov mocha $(find src -name '*.spec.js') --require babel-core/register --require babel-polyfill",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint ./src",
     "deploy": "npm run build && gh-pages -b master -d dist"
   },
