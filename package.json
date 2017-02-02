@@ -30,6 +30,7 @@
     "clean-webpack-plugin": "^0.1.15",
     "coveralls": "^2.11.15",
     "css-loader": "^0.26.1",
+    "enzyme": "^2.7.1",
     "eslint": "^3.14.1",
     "eslint-config-babel": "^6.0.0",
     "eslint-loader": "^1.6.1",
