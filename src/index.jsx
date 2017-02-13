@@ -5,14 +5,21 @@ import {
   Route,
   browserHistory
 } from 'react-router'
+import ReactGA from 'react-ga'
+import RootComponent from 'routes/root/component'
 
-import Root from './routes/root/component'
+ReactGA.initialize('UA-91813851-1')
+
+const logPageView = () => {
+  ReactGA.set({ page: window.location.pathname })
+  ReactGA.pageview(window.location.pathname)
+}
 
 render((
-  <Router history={browserHistory}>
+  <Router history={browserHistory} onUpdate={logPageView}>
     <Route
-        component={Root}
-        path="/"
+        component={RootComponent}
+        path='/'
     />
   </Router>
 ), document.getElementById('root'))
