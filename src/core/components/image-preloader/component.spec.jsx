@@ -32,6 +32,13 @@ describe('Components', () => {
       expect(image.src).to.equal('/test.gif')
     })
 
-    it('delete the image on unload')
+    it('deletes the image on unload', () => {
+      const wrapper = mount(<Component src='/test.gif' onLoad={() => {}} />)
+      const instance = wrapper.instance()
+
+      expect(instance.img).to.exist
+      wrapper.unmount()
+      expect(instance.img).to.equal(undefined)
+    })
   })
 })
