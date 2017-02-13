@@ -21,19 +21,32 @@
     "babel",
     "flowtype",
     "react",
-    "mocha"
+    "mocha",
+    "import"
   ],
   "extends": [
+    "eslint:recommended",
     "babel",
     "plugin:flowtype/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:import/react"
   ],
-  // custom rules preferences
   "rules": {
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
+    "newline-after-var": ["error", "always"],
 
     "react/jsx-indent": ["error", 2],
-    "react/no-set-state": "off"
+    "react/no-set-state": "off",
+
+    "import/order": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack.config.js"
+      }
+    }
   }
 }

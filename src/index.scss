@@ -1,5 +1,17 @@
-@import './colors';
-@import 'components/github-fork/style';
-@import 'components/face-canvas/style';
-@import 'components/resize-input/style';
-@import 'routes/root/style';
+@import './core/palette';
+@import './core/fonts';
+
+html {
+  // prevent overscrolling in Chrome
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  font: $jd-font-default;
+  background: $jd-color-black-currant;
+  color: $jd-color-red;
+  margin: 0;
+  height: 100%;
+  overflow: auto;
+}
