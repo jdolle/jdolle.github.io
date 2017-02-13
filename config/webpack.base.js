@@ -8,6 +8,7 @@ export default {
   ],
   resolve: {
     alias: {
+      'config': path.resolve(__dirname, './application.js'),
       'components': path.resolve(__dirname, '../src/core/components'),
       'routes': path.resolve(__dirname, '../src/core/routes')
     },

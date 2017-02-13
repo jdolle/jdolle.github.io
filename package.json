@@ -1,26 +1,24 @@
 {
   "name": "personal-site",
-  "version": "1.0.0",
+  "version": "2.0.3",
   "description": "Source code for my personal website",
-  "main": "dist/index.html",
+  "main": "build/index.html",
   "scripts": {
     "start": "npm run server",
-    "build": "npm run lint && webpack --progress --colors",
+    "build": "webpack --progress --colors",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "server": "webpack-dev-server --content-base dist/",
-    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register \"src/**/*.spec.jsx\"",
-    "testWatch": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register --watch \"src/**/*.spec.jsx\"",
+    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register \"src\/**\/*.spec.jsx\"",
+    "testWatch": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register --watch \"src\/**\/*.spec.jsx\"",
     "coverage": "nyc npm test",
-    "lint": "eslint -c .eslintrc.json --ext .jsx,.js ./src",
-    "deploy": "npm run build:prod && gh-pages -b master -d dist"
+    "lint": "eslint -c .eslintrc.json --ext .jsx,.js ./src && stylelint \".\/src\/**\/*.scss\"",
+    "deploy": "npm run build:prod && gh-pages -b master -d build"
   },
   "nyc": {
-    "reporter": [
-      "lcov"
-    ],
+    "reporter": ["lcov"],
     "exclude": [
       ".tmp",
-      "webpack",
+      "config",
       "webpack.config.js",
       "**/*.spec.jsx"
     ]
@@ -67,6 +65,7 @@
     "mocha": "^3.2.0",
     "mocha-webpack": "^0.7.0",
     "node-sass": "^4.4.0",
+    "normalize.css": "^5.0.0",
     "nyc": "^10.1.2",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",

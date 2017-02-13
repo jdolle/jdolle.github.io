@@ -1,20 +1,17 @@
 import path from 'path'
 import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+import merge from 'webpack-merge'
+import nodeExternals from 'webpack-node-externals'
 import StyleLintPlugin from 'stylelint-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import merge from 'webpack-merge'
-import baseConfig from './base'
+import baseConfig from './webpack.base'
 
 export default merge.strategy({
-  entry: 'prepend',
+  'output.filename': 'replace',
   module: 'replace',
   plugins: 'replace'
 })(baseConfig, {
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server'
-  ],
+  externals: [nodeExternals()],
   module: {
     rules: [
       // --------- img ----------
@@ -43,16 +40,20 @@ export default merge.strategy({
         exclude: /node_modules/,
         enforce: 'pre',
         use: [
-          { loader: 'eslint-loader' }
+          {
+            loader: 'eslint-loader',
+            options: {
+              failOnError: true
+            }
+          }
         ],
       },
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
         use: [
-          { loader: 'react-hot-loader' },
           { loader: 'babel-loader' }
-        ]
+        ],
+        exclude: /node_modules/
       },
 
       // ----------- CSS -----------
@@ -86,20 +87,15 @@ export default merge.strategy({
     new webpack.EnvironmentPlugin([
       'NODE_ENV'
     ]),
-    new HtmlWebpackPlugin({
-      title: 'Hello, I\'m Jeff Dolle',
-      template: path.resolve(__dirname, '../src/index.template.ejs'),
-      inject: 'body'
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new StyleLintPlugin({
-      configFile: path.resolve(__dirname, '../.stylelintrc.json')
+      configFile: '.stylelintrc.json',
+      files: ['./src/**/*.scss']
     }),
     new ExtractTextPlugin('[name].scss')
   ],
-  devtool: 'eval-source-map',
-  devServer: {
-    contentBase: path.resolve(__dirname, '../dist')
+  target: 'node',
+  devtool: 'cheap-module-source-map',
+  output: {
+    filename: '[name].test.bundle.js'
   }
 })
