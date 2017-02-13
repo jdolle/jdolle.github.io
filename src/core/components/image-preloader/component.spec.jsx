@@ -6,7 +6,7 @@ import Component from './component'
 describe('Components', () => {
   describe('ImagePreloader', () => {
     it('should not render', () => {
-      const wrapper = shallow(<Component />)
+      const wrapper = shallow(<Component src='' onLoad={() => {}} />)
 
       expect(wrapper.html()).to.equal(null)
     })

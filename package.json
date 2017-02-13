@@ -31,7 +31,6 @@
     "babel-preset-es2016": "^6.22.0",
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-react": "^6.22.0",
-    "canvas": "^1.6.2",
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.15",
     "coveralls": "^2.11.15",
