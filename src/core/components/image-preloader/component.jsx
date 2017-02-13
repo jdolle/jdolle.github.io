@@ -3,7 +3,7 @@ import React from 'react'
 class Component extends React.PureComponent {
   componentDidMount() {
     const { src, onLoad } = this.props
-    const img = this.img = Image ? new Image() : document.createElement('img')
+    const img = this.img = typeof Image !== 'undefined' ? new Image() : document.createElement('img')
 
     img.src = src
     img.onload = onLoad

@@ -5,5 +5,10 @@
     "es2017",
     "react"
   ],
-  "plugins": [ "lodash" ]
+  "plugins": [ "lodash" ],
+  "env": {
+    "test": {
+      "plugins": [ "istanbul" ]
+    }
+  }
 }
