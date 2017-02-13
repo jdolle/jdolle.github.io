@@ -14,7 +14,7 @@ describe('Components', () => {
 
     it('links to github profile', () => {
       const wrapper = shallow(<Component />)
-      const link = wrapper.find({ href: 'https://github.com/jdolle' })
+      const link = wrapper.find({ href: 'https://github.com/jdolle/jdolle.github.io' })
 
       expect(link.exists()).to.equal(true)
       expect(link.name()).to.equal('a')

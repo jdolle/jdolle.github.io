@@ -5,12 +5,13 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import StyleLintPlugin from 'stylelint-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import merge from 'webpack-merge'
-import baseConfig from './base'
+import baseConfig from './webpack.base'
 
 export default merge.strategy({
   module: 'replace',
   plugins: 'replace',
-  'output.filename': 'replace'
+  'output.filename': 'replace',
+  'output.path': 'replace'
 })(baseConfig, {
   module: {
     rules: [
@@ -84,7 +85,9 @@ export default merge.strategy({
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin([path.resolve(__dirname, '../build')], {
+      root: process.cwd()
+    }),
     new webpack.EnvironmentPlugin([
       'NODE_ENV'
     ]),
@@ -98,12 +101,14 @@ export default merge.strategy({
       compress: { warnings: false }
     }),
     new StyleLintPlugin({
-      configFile: '.stylelintrc.json'
+      configFile: '.stylelintrc.json',
+      files: ['./src/**/*.scss']
     }),
     new ExtractTextPlugin('[name].scss')
   ],
   devtool: 'source-map',
   output: {
-    filename: '[name].prod.bundle.js'
+    filename: '[name].prod.bundle.js',
+    path: path.resolve(__dirname, '../build'),
   }
 })

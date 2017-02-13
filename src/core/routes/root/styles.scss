@@ -5,8 +5,9 @@
 
   ul {
     list-style: none;
+
     li {
-      padding: 80px 0;
+      padding: 70px 0;
 
       &:nth-child(2) {
         font-family: serif;
@@ -14,7 +15,7 @@
       }
 
       &:last-child {
-        padding-bottom: 20px;
+        padding-bottom: 0;
       }
     }
   }
@@ -22,10 +23,21 @@
   a {
     color: $jd-color-yellow;
   }
+
+  footer {
+    position: fixed;
+    right: 0;
+    bottom: 4px;
+    marquee {
+      font-size: 14px;
+    }
+  }
 }
 
 .contentContainer {
-  padding-top: 100px;
+  box-sizing: border-box;
+  padding: 73px 0 20px;
+  min-height: 100%;
   background-image: url('./routes/root/assets/background.gif');
   background-attachment: fixed;
 }

@@ -1,17 +1,21 @@
 import path from 'path'
 import webpack from 'webpack'
-import merge from 'webpack-merge'
-import nodeExternals from 'webpack-node-externals'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import StyleLintPlugin from 'stylelint-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import baseConfig from './base'
+import merge from 'webpack-merge'
+import baseConfig from './webpack.base'
 
 export default merge.strategy({
-  'output.filename': 'replace',
+  entry: 'prepend',
   module: 'replace',
   plugins: 'replace'
 })(baseConfig, {
-  externals: [nodeExternals()],
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server'
+  ],
   module: {
     rules: [
       // --------- img ----------
@@ -40,20 +44,16 @@ export default merge.strategy({
         exclude: /node_modules/,
         enforce: 'pre',
         use: [
-          {
-            loader: 'eslint-loader',
-            options: {
-              failOnError: true
-            }
-          }
+          { loader: 'eslint-loader' }
         ],
       },
       {
         test: /\.jsx?$/,
+        exclude: /node_modules/,
         use: [
+          { loader: 'react-hot-loader' },
           { loader: 'babel-loader' }
-        ],
-        exclude: /node_modules/
+        ]
       },
 
       // ----------- CSS -----------
@@ -84,17 +84,27 @@ export default merge.strategy({
     ]
   },
   plugins: [
+    new CleanWebpackPlugin([path.resolve(__dirname, '../dist')], {
+      root: process.cwd()
+    }),
     new webpack.EnvironmentPlugin([
       'NODE_ENV'
     ]),
+    new HtmlWebpackPlugin({
+      title: 'Hello, I\'m Jeff Dolle',
+      template: path.resolve(__dirname, '../src/index.template.ejs'),
+      inject: 'body'
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new StyleLintPlugin({
-      configFile: path.resolve(__dirname, '../.stylelintrc.json')
+      configFile: '.stylelintrc.json',
+      files: ['./src/**/*.scss']
     }),
     new ExtractTextPlugin('[name].scss')
   ],
-  target: 'node',
-  devtool: 'cheap-module-source-map',
-  output: {
-    filename: '[name].test.bundle.js'
+  devtool: 'eval-source-map',
+  devServer: {
+    contentBase: path.resolve(__dirname, '../dist')
   }
 })

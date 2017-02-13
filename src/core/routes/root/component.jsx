@@ -48,6 +48,9 @@ class Component extends React.Component {
           <li>is something you might expect to see if you are a 90s kid like me</li>
           <li><a href={resume} target='_blank'>R&Eacute;SUM&Eacute;</a></li>
         </ul>
+        <footer>
+          <marquee>This site was intentionally over-engineered by Jeff Dolle.</marquee>
+        </footer>
       </div>
     )
   }
