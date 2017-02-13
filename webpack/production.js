@@ -62,7 +62,12 @@ export default merge.strategy({
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            { loader: 'css-loader' },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true
+              }
+            },
             { loader: 'resolve-url-loader' },
             {
               loader: 'sass-loader',
