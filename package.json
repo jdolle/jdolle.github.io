@@ -8,8 +8,8 @@
     "build": "npm run lint && webpack --progress --colors",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "server": "webpack-dev-server --content-base dist/",
-    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js \"src/**/*.spec.jsx\"",
-    "testWatch": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --watch \"src/**/*.spec.jsx\"",
+    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register \"src/**/*.spec.jsx\"",
+    "testWatch": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register --watch \"src/**/*.spec.jsx\"",
     "coverage": "nyc npm test",
     "lint": "eslint -c .eslintrc.json --ext .jsx,.js ./src",
     "deploy": "npm run build:prod && gh-pages -b master -d dist"
