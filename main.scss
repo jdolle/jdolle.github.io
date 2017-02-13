@@ -1,0 +1,65 @@
+.component {
+  text-align: center;
+}
+
+.component ul {
+  list-style: none;
+}
+
+.component ul li {
+  padding: 80px 0;
+}
+
+.component ul li:nth-child(2) {
+  font-family: serif;
+  color: springgreen;
+}
+
+.component ul li:last-child {
+  padding-bottom: 20px;
+}
+
+.component a {
+  color: #ff0;
+}
+
+.contentContainer {
+  padding-top: 100px;
+  background-image: url(/background.fe0b06dc860c6ae67c271bb66c7bf9e9.gif);
+  background-attachment: fixed;
+}
+
+.enter {
+  opacity: 0.01;
+}
+
+.enter.enterActive {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.component {
+  z-index: 1001;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.component img {
+  border: 0;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  font: 20px "Lato", verdana, arial;
+  background: #1d0042;
+  color: #f00;
+  margin: 0;
+  height: 100%;
+  overflow: auto;
+}
+
