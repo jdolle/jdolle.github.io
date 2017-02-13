@@ -7,12 +7,10 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import baseConfig from './base'
 
 export default merge.strategy({
-  entry: 'replace',
   'output.filename': 'replace',
   module: 'replace',
   plugins: 'replace'
 })(baseConfig, {
-  entry: [], // Set by mocha-webmock
   externals: [nodeExternals()],
   module: {
     rules: [
@@ -89,9 +87,6 @@ export default merge.strategy({
     new webpack.EnvironmentPlugin([
       'NODE_ENV'
     ]),
-    new webpack.LoaderOptionsPlugin({
-      debug: true
-    }),
     new StyleLintPlugin({
       configFile: path.resolve(__dirname, '../.stylelintrc.json')
     }),
