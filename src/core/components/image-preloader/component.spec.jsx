@@ -22,10 +22,10 @@ describe('Components', () => {
       expect(wrapper.html()).to.equal(null)
     })
 
-    it('preloads an image', () => {
+    it('preloads an image on mount', () => {
       sinon.spy(Component.prototype, 'componentDidMount')
       const wrapper = mount(<Component src='/test.gif' onLoad={() => {}} />)
-      const image = wrapper.instance().img
+      const image = wrapper.instance().image
 
       expect(Component.prototype.componentDidMount.calledOnce).to.equal(true)
       expect(_.lowercase(image.tagName)).to.equal('img')
@@ -36,9 +36,23 @@ describe('Components', () => {
       const wrapper = mount(<Component src='/test.gif' onLoad={() => {}} />)
       const instance = wrapper.instance()
 
-      expect(instance.img).to.exist
+      expect(instance.image).to.exist
       wrapper.unmount()
-      expect(instance.img).to.equal(undefined)
+      expect(instance.image).to.equal(undefined)
+    })
+
+    it('preloads an image on props change', () => {
+      sinon.spy(Component.prototype, 'componentWillReceiveProps')
+      const wrapper = mount(<Component src='/test.gif' onLoad={() => {}} />)
+
+      wrapper.setProps({ src: '/new.gif' })
+
+      expect(Component.prototype.componentWillReceiveProps.calledOnce).to.equal(true)
+
+      const image = wrapper.instance().image
+
+      expect(_.lowercase(image.tagName)).to.equal('img')
+      expect(image.src).to.equal('/new.gif')
     })
   })
 })

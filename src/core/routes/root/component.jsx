@@ -67,7 +67,13 @@ class Component extends React.Component {
         <GithubForkComponent />
         {
           _.map(Component.IMAGES, (img, index) => {
-            return <ImagePreloader key={index} src={img} onLoad={this.handleImageLoad} />
+            return (
+              <ImagePreloader key={index}
+                src={img}
+                onLoad={this.handleImageLoad}
+                onError={this.handleImageLoad}
+              />
+            )
           })
         }
         <ReactCSSTransitionGroup transitionName={styles}
