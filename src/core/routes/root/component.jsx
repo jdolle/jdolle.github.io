@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import _ from 'lodash'
@@ -38,8 +39,11 @@ class Component extends React.Component {
 
   renderContentContainer() {
     return (
-      <div key='content' className={styles.contentContainer}>
-        <img src={logoImg} alt='Jeff Dolle' />
+      <div key='content' className={styles.content}>
+        <header>
+          <div className={classnames(styles.logo, styles.first)} />
+          <div className={classnames(styles.logo, styles.last)} />
+        </header>
         <ul>
           <li>
             THIS SITE IS<br/>
@@ -59,7 +63,7 @@ class Component extends React.Component {
     const { items } = this.state
 
     return (
-      <div className={styles.component}>
+      <div>
         <GithubForkComponent />
         {
           _.map(Component.IMAGES, (img, index) => {

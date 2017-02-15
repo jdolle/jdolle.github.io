@@ -5,6 +5,8 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import StyleLintPlugin from 'stylelint-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import merge from 'webpack-merge'
+import autoprefixerPlugin from 'autoprefixer'
+import cssMqpackerPlugin from 'css-mqpacker'
 import baseConfig from './webpack.base'
 
 export default merge.strategy({
@@ -66,7 +68,19 @@ export default merge.strategy({
             {
               loader: 'css-loader',
               options: {
+                importLoaders: 1,
                 modules: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function() {
+                  return [
+                    autoprefixerPlugin,
+                    cssMqpackerPlugin
+                  ]
+                }
               }
             },
             { loader: 'resolve-url-loader' },

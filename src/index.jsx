@@ -1,3 +1,6 @@
+// NOTE (JMD): must import index.scss before /core/router else normalize.css
+//  styles override user defined styles
+import './index.scss'
 import React from 'react'
 import { render } from 'react-dom'
 import ReactGA from 'react-ga'

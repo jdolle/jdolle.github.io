@@ -1,7 +1,24 @@
 import React from 'react'
+import shallowequal from 'shallowequal'
 
 class Component extends React.PureComponent {
   componentDidMount() {
+    this.preloadSrc()
+  }
+
+  componentWillUnmount() {
+    delete this.img
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!shallowequal(this.props, nextProps)) {
+      this.preloadSrc()
+    }
+  }
+
+  preloadSrc() {
+    if (this.img) { delete this.img }
+
     const { src, onLoad } = this.props
     const img = this.img = typeof Image !== 'undefined' ? new Image() : document.createElement('img')
 
@@ -9,13 +26,9 @@ class Component extends React.PureComponent {
     img.onload = onLoad
   }
 
-  componentWillUnmount() {
-    delete this.img
-  }
+  shouldComponentUpdate() { return false }
 
-  render() {
-    return false
-  }
+  render() { return false }
 }
 
 Component.displayName = 'ImagePreloaderComponent'

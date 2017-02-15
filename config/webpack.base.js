@@ -3,8 +3,7 @@ import path from 'path'
 export default {
   entry: [
     'babel-polyfill',
-    path.resolve(__dirname, '../src/index.jsx'),
-    path.resolve(__dirname, '../src/index.scss')
+    path.resolve(__dirname, '../src/index.jsx')
   ],
   resolve: {
     alias: {
