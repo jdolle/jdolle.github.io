@@ -8,14 +8,14 @@
     "build": "webpack --progress --colors",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "server": "webpack-dev-server --content-base dist/",
-    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register \"src\/**\/*.spec.jsx\"",
-    "testWatch": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register --watch \"src\/**\/*.spec.jsx\"",
+    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register \"src/**/*.spec.jsx\"",
+    "testWatch": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register --watch \"src/**/*.spec.jsx\"",
     "coverage": "nyc npm test",
-    "lint": "eslint -c .eslintrc.json --ext .jsx,.js ./src && stylelint \"./src\/**\/*.scss\"",
+    "lint": "eslint -c .eslintrc.json --ext .jsx,.js ./src && stylelint \"./src/**/*.scss\"",
     "deploy": "npm run build:prod && gh-pages -b master -d build"
   },
   "nyc": {
-    "reporter": ["lcov"],
+    "reporter": ["text-lcov", "text-summary"],
     "exclude": [
       ".tmp",
       "config",
@@ -66,7 +66,7 @@
     "jsdom-global": "2.1.1",
     "lodash": "^4.17.4",
     "mocha": "^3.2.0",
-    "mocha-webpack": "^0.7.0",
+    "mocha-webpack": "^1.0.0-beta.1",
     "node-sass": "^4.4.0",
     "normalize.css": "^5.0.0",
     "nyc": "^10.1.2",
