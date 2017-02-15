@@ -8,7 +8,7 @@
   "plugins": [ "lodash" ],
   "env": {
     "test": {
-      "plugins": [ "istanbul" ]
+      "plugins": [ "lodash", "istanbul" ]
     }
   }
 }

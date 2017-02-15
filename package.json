@@ -15,7 +15,10 @@
     "deploy": "npm run build:prod && gh-pages -b master -d build"
   },
   "nyc": {
-    "reporter": ["text-lcov", "text-summary"],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
     "exclude": [
       ".tmp",
       "config",

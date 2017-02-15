@@ -7,9 +7,11 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import baseConfig from './webpack.base'
 
 export default merge.strategy({
-  'output.filename': 'replace',
+  externals: 'replace',
   module: 'replace',
-  plugins: 'replace'
+  plugins: 'replace',
+  target: 'replace',
+  'output.filename': 'replace'
 })(baseConfig, {
   externals: [nodeExternals()],
   module: {
@@ -94,7 +96,6 @@ export default merge.strategy({
     new ExtractTextPlugin('[name].scss')
   ],
   target: 'node',
-  devtool: 'cheap-module-source-map',
   output: {
     filename: '[name].test.bundle.js'
   }
