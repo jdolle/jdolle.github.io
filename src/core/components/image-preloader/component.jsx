@@ -5,7 +5,7 @@ import _ from 'lodash'
 class Component extends React.PureComponent {
   constructor() {
     super()
-    this.img = null
+    this.image = null
     this.timer = null
     this.handleLoad = this.handleLoad.bind(this)
     this.handleError = this.handleError.bind(this)
@@ -27,11 +27,20 @@ class Component extends React.PureComponent {
     }
   }
 
+  clearTimer() {
+    if (this.timer) {
+      clearTimeout(this.timer)
+      this.timer = null
+    }
+  }
 
   handleLoad(image) {
-    clearTimeout(this.timer)
-    this.timer = null
-    if (image.naturalWidth && image.naturalHeight) {
+    this.clearTimer()
+    const hasNaturalValues = 'naturalWidth' in image
+
+    if (hasNaturalValues && image.naturalWidth && image.naturalHeight ||
+      (!hasNaturalValues && image.width && image.height)
+    ) {
       this.props.onLoad(image)
     } else {
       this.props.onError(image)
@@ -39,24 +48,25 @@ class Component extends React.PureComponent {
   }
 
   handleError(image) {
-    clearTimeout(this.timer)
-    this.timer = null
+    this.clearTimer()
     this.props.onError(image)
   }
 
   preloadImage(src) {
+    this.clearTimer()
     if (this.image) { delete this.image }
 
     const image = this.image = typeof Image !== 'undefined' ? new Image() : document.createElement('img')
 
+    image.onload = _.wrap(image, this.handleLoad)
     image.src = src
-    image.addEventListener('load', _.wrap(image, this.handleLoad))
-    image.addEventListener('error', _.wrap(image, this.handleError))
+    image.onerror = _.wrap(image, this.handleError)
 
-    if (this.props.timeout)
+    if (this.props.timeout) {
       this.timer = setTimeout(() => {
         this.handleError(image)
       }, this.props.timeout)
+    }
   }
 
   shouldComponentUpdate() { return false }

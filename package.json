@@ -1,6 +1,6 @@
 {
   "name": "personal-site",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Source code for my personal website",
   "main": "build/index.html",
   "scripts": {
@@ -23,7 +23,7 @@
       ".tmp",
       "config",
       "webpack.config.js",
-      "**/*.spec.jsx"
+      "src/**/*.spec.jsx"
     ]
   },
   "repository": {
@@ -45,6 +45,7 @@
     "babel-preset-es2016": "^6.22.0",
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-react": "^6.22.0",
+    "canvas": "^1.6.3",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.15",
