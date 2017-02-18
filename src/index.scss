@@ -2,6 +2,10 @@
 @import './core/palette';
 @import './core/fonts';
 
+@-ms-viewport {
+  width: device-width;
+}
+
 html {
   // prevent overscrolling in Chrome
   overflow: hidden;

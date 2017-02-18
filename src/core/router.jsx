@@ -15,10 +15,7 @@ const logPageView = () => {
 export default function Component() {
   return (
     <Router history={browserHistory} onUpdate={logPageView}>
-      <Route
-          component={RootComponent}
-          path='/'
-      />
+      <Route component={RootComponent} path='/' />
     </Router>
   )
 }

@@ -1,4 +1,3 @@
-import jsdom from 'jsdom-global'
 import React from 'react'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
@@ -9,20 +8,6 @@ import ImagePreloaderComponent from 'components/image-preloader/component'
 
 describe('Routes', () => {
   describe('Root', () => {
-    beforeEach(function() {
-      this.jsdom = jsdom()
-    })
-
-    afterEach(function() {
-      this.jsdom()
-    })
-
-    it('should have a component class', () => {
-      const wrapper = shallow(<Component />)
-
-      expect(wrapper.hasClass(styles.component)).to.equal(true)
-    })
-
     it('preloads 3 images', () => {
       const wrapper = shallow(<Component />)
 
@@ -36,6 +21,7 @@ describe('Routes', () => {
       _.times(3, (n) => _.delay(wrapper.instance().handleImageLoad, n - 1))
       setTimeout(() => {
         expect(wrapper.state('items').length).to.equal(1)
+        expect(wrapper.find(`.${styles.content}`).length).to.equal(1)
         done()
       }, 5)
     })

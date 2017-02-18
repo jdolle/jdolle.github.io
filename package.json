@@ -1,6 +1,6 @@
 {
   "name": "personal-site",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Source code for my personal website",
   "main": "build/index.html",
   "scripts": {
@@ -8,19 +8,22 @@
     "build": "webpack --progress --colors",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "server": "webpack-dev-server --content-base dist/",
-    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register \"src\/**\/*.spec.jsx\"",
-    "testWatch": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register --watch \"src\/**\/*.spec.jsx\"",
+    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register \"src/**/*.spec.jsx\"",
+    "testWatch": "cross-env NODE_ENV=test mocha-webpack --webpack-config webpack.config.js --require jsdom-global/register --watch \"src/**/*.spec.jsx\"",
     "coverage": "nyc npm test",
-    "lint": "eslint -c .eslintrc.json --ext .jsx,.js ./src && stylelint \".\/src\/**\/*.scss\"",
+    "lint": "eslint -c .eslintrc.json --ext .jsx,.js ./src && stylelint \"./src/**/*.scss\"",
     "deploy": "npm run build:prod && gh-pages -b master -d build"
   },
   "nyc": {
-    "reporter": ["lcov"],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
     "exclude": [
       ".tmp",
       "config",
       "webpack.config.js",
-      "**/*.spec.jsx"
+      "src/**/*.spec.jsx"
     ]
   },
   "repository": {
@@ -31,6 +34,7 @@
   "license": "MIT",
   "homepage": "https://github.com/jdolle/jdolle.github.io#readme",
   "devDependencies": {
+    "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
@@ -41,10 +45,13 @@
     "babel-preset-es2016": "^6.22.0",
     "babel-preset-es2017": "^6.22.0",
     "babel-preset-react": "^6.22.0",
+    "canvas": "^1.6.3",
     "chai": "^3.5.0",
+    "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.15",
     "coveralls": "^2.11.15",
     "css-loader": "^0.26.1",
+    "css-mqpacker": "^5.0.1",
     "enzyme": "^2.7.1",
     "eslint": "^3.14.1",
     "eslint-config-babel": "^6.0.0",
@@ -63,10 +70,11 @@
     "jsdom-global": "2.1.1",
     "lodash": "^4.17.4",
     "mocha": "^3.2.0",
-    "mocha-webpack": "^0.7.0",
+    "mocha-webpack": "^1.0.0-beta.1",
     "node-sass": "^4.4.0",
     "normalize.css": "^5.0.0",
     "nyc": "^10.1.2",
+    "postcss-loader": "^1.3.0",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
@@ -74,6 +82,7 @@
     "react-hot-loader": "^1.3.1",
     "resolve-url-loader": "^1.6.1",
     "sass-loader": "^4.1.1",
+    "shallowequal": "^0.2.2",
     "sinon": "^1.17.7",
     "style-loader": "^0.13.1",
     "stylelint-webpack-plugin": "^0.5.1",
