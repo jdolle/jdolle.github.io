@@ -50,7 +50,6 @@ class Component extends React.Component {
             <img src={constructionImg} alt='construction' />
           </li>
           <li>is something you might expect to see if you are a 90s kid like me</li>
-          <li><a href={resume} target='_blank'>R&Eacute;SUM&Eacute;</a></li>
         </ul>
         <footer>
           <marquee>This site was intentionally over-engineered by Jeff Dolle.</marquee>
